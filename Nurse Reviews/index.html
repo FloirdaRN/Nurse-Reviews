@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nurse CJ Reviews - Patient Feedback Portal</title>
+  <meta name="description" content="Share your experience and leave patient reviews for Nurse CJ Balling, RN. Your feedback helps ensure compassionate, top-tier healthcare.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- --- Brand Header --- -->
+    <header>
+      <div class="brand">
+        <div class="logo-icon" aria-hidden="true">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div class="brand-title">Nurse CJ <span>Reviews</span></div>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle dark/light mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="btn btn-primary trigger-write-review">
+          <i class="fas fa-pen-nib"></i> Leave a Review
+        </button>
+      </div>
+    </header>
+
+    <!-- --- Main Layout --- -->
+    <main>
+      
+      <!-- LEFT COLUMN: Profile & Ratings Aggregate -->
+      <aside>
+        
+        <!-- Nurse Profile Card -->
+        <article class="card profile-card">
+          <div class="profile-info">
+            <div class="avatar-container">
+              <img src="nurse_avatar.png" alt="CJ Balling, RN" class="profile-avatar" id="nurse-avatar-img">
+              <span class="avatar-badge" title="Active Nursing License"><i class="fas fa-check"></i></span>
+            </div>
+            <h1 class="profile-name">CJ Balling, RN</h1>
+            <p class="profile-title">Registered Nurse &middot; ASN</p>
+            
+            <button class="btn btn-secondary trigger-write-review" style="width: 100%;">
+              <i class="fas fa-comment-medical"></i> Review My Care
+            </button>
+            
+            <div class="profile-details">
+              <div class="detail-item">
+                <i class="fas fa-hospital" aria-hidden="true"></i>
+                <span>AdventHealth</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-stethoscope" aria-hidden="true"></i>
+                <span>Emergency Department</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                <span>ASN - Daytona State College</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stats breakdown Summary -->
+        <article class="card stats-card">
+          <h2 class="stats-card-title">
+            <i class="fas fa-chart-line" aria-hidden="true"></i> Ratings Summary
+          </h2>
+          
+          <div class="stats-aggregate">
+            <div class="rating-big" id="agg-average">0.0</div>
+            <div class="rating-big-label">
+              <div class="stars-container" id="agg-stars">
+                <!-- Stars rendered by app.js -->
+              </div>
+              <span class="total-reviews-count" id="agg-total-count">Based on 0 reviews</span>
+            </div>
+          </div>
+
+          <div class="recommendation-banner" id="agg-recommendation" style="display: none;">
+            <!-- Recommendation rate rendered by app.js -->
+          </div>
+
+          <!-- Clickable Star Histogram Rows -->
+          <div class="stats-histogram" role="group" aria-label="Filter reviews by stars">
+            
+            <div class="histogram-row" id="histogram-row-5" onclick="setRatingFilter(5)" tabindex="0" role="button" aria-label="Show 5 star reviews">
+              <span class="histogram-stars">5</span>
+              <i class="fas fa-star histogram-star-icon" aria-hidden="true"></i>
+              <div class="histogram-bar-bg">
+                <div class="histogram-bar-fill" id="bar-fill-5"></div>
+              </div>
+              <span class="histogram-count" id="bar-count-5">0</span>
+            </div>
+
+            <div class="histogram-row" id="histogram-row-4" onclick="setRatingFilter(4)" tabindex="0" role="button" aria-label="Show 4 star reviews">
+              <span class="histogram-stars">4</span>
+              <i class="fas fa-star histogram-star-icon" aria-hidden="true"></i>
+              <div class="histogram-bar-bg">
+                <div class="histogram-bar-fill" id="bar-fill-4"></div>
+              </div>
+              <span class="histogram-count" id="bar-count-4">0</span>
+            </div>
+
+            <div class="histogram-row" id="histogram-row-3" onclick="setRatingFilter(3)" tabindex="0" role="button" aria-label="Show 3 star reviews">
+              <span class="histogram-stars">3</span>
+              <i class="fas fa-star histogram-star-icon" aria-hidden="true"></i>
+              <div class="histogram-bar-bg">
+                <div class="histogram-bar-fill" id="bar-fill-3"></div>
+              </div>
+              <span class="histogram-count" id="bar-count-3">0</span>
+            </div>
+
+            <div class="histogram-row" id="histogram-row-2" onclick="setRatingFilter(2)" tabindex="0" role="button" aria-label="Show 2 star reviews">
+              <span class="histogram-stars">2</span>
+              <i class="fas fa-star histogram-star-icon" aria-hidden="true"></i>
+              <div class="histogram-bar-bg">
+                <div class="histogram-bar-fill" id="bar-fill-2"></div>
+              </div>
+              <span class="histogram-count" id="bar-count-2">0</span>
+            </div>
+
+            <div class="histogram-row" id="histogram-row-1" onclick="setRatingFilter(1)" tabindex="0" role="button" aria-label="Show 1 star reviews">
+              <span class="histogram-stars">1</span>
+              <i class="fas fa-star histogram-star-icon" aria-hidden="true"></i>
+              <div class="histogram-bar-bg">
+                <div class="histogram-bar-fill" id="bar-fill-1"></div>
+              </div>
+              <span class="histogram-count" id="bar-count-1">0</span>
+            </div>
+
+          </div>
+        </article>
+
+      </aside>
+
+      <!-- RIGHT COLUMN: Reviews Feed Area -->
+      <section>
+        
+        <!-- Filter Controls Panel -->
+        <div class="feed-header">
+          <div class="feed-header-top">
+            <h2 class="feed-title">Patient Reviews &amp; Feedback</h2>
+          </div>
+          
+          <div class="controls-bar">
+            <!-- Search Keyword -->
+            <div class="search-input-wrapper">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input type="text" id="search-reviews" class="input-control" placeholder="Search keywords, names, tags..." aria-label="Search reviews">
+            </div>
+
+            <!-- Care Unit selection -->
+            <div>
+              <select id="filter-department" class="select-control" aria-label="Filter by department care unit">
+                <option value="all">All Care Units</option>
+                <option value="emergency department">Emergency Department</option>
+                <option value="home health care">Home Health Care</option>
+              </select>
+            </div>
+
+            <!-- Sort By selection -->
+            <div>
+              <select id="sort-reviews" class="select-control" aria-label="Sort reviews by">
+                <option value="recent">Most Recent</option>
+                <option value="highest">Highest Rated</option>
+                <option value="lowest">Lowest Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Active filters badge row -->
+          <div class="active-filters" id="active-filters-container">
+            <!-- Active filter pills rendered dynamically by app.js -->
+          </div>
+        </div>
+
+        <!-- Reviews Dynamic Feed -->
+        <div class="reviews-list" id="reviews-list" role="feed" aria-busy="false">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- --- Footer & Admin mode triggers --- -->
+    <footer>
+      <div>
+        <p>&copy; 2026 Nurse CJ Reviews. All rights reserved.</p>
+        <p style="font-size:0.75rem; margin-top:0.25rem;">Developed with strict adherence to clinical review and HIPAA boundaries.</p>
+      </div>
+      <div>
+        <button id="admin-mode-toggle" class="admin-mode-toggle-link" aria-label="Nurse administrator staff login">
+          <i class="fas fa-lock" aria-hidden="true"></i> Staff Login
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================
+       MODAL: WRITE A PATIENT REVIEW
+       ========================================== -->
+  <div class="modal-overlay" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-label">
+    <div class="modal-container">
+      
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-label">Submit Your Patient Review</h3>
+        <button class="modal-close-btn" id="close-review-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <!-- Main inputs body form -->
+      <div class="modal-body" id="modal-inner-body">
+        <form id="patient-review-form" novalidate>
+          
+          <!-- Rating Stars -->
+          <div class="form-group">
+            <span class="form-label">How would you rate the care you received? *</span>
+            <div class="interactive-stars" role="radiogroup" aria-label="Rating scale in stars">
+              <button type="button" class="star-input-btn" data-value="5" role="radio" aria-checked="false" aria-label="5 stars"><i class="fas fa-star"></i></button>
+              <button type="button" class="star-input-btn" data-value="4" role="radio" aria-checked="false" aria-label="4 stars"><i class="fas fa-star"></i></button>
+              <button type="button" class="star-input-btn" data-value="3" role="radio" aria-checked="false" aria-label="3 stars"><i class="fas fa-star"></i></button>
+              <button type="button" class="star-input-btn" data-value="2" role="radio" aria-checked="false" aria-label="2 stars"><i class="fas fa-star"></i></button>
+              <button type="button" class="star-input-btn" data-value="1" role="radio" aria-checked="false" aria-label="1 star"><i class="fas fa-star"></i></button>
+            </div>
+            <span class="error-msg" id="error-rating">Please select a rating star score.</span>
+          </div>
+
+          <!-- Patient details -->
+          <div class="form-group">
+            <div class="form-row">
+              <div>
+                <label for="review-name" class="form-label">Patient Name *</label>
+                <input type="text" id="review-name" class="form-text-control" placeholder="E.g. John Doe">
+                <span class="error-msg" id="error-name">Please provide your name or select anonymous.</span>
+              </div>
+              <div>
+                <label for="review-department" class="form-label">Care Unit / Department *</label>
+                <select id="review-department" class="form-text-control select-control" style="background-color: var(--bg-app); background-position: right 0.75rem center; padding-left: 1rem;">
+                  <option value="" disabled selected>Select department...</option>
+                  <option value="emergency department">Emergency Department</option>
+                  <option value="home health care">Home Health Care</option>
+                </select>
+                <span class="error-msg" id="error-dept">Please select the unit where you received care.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anonymous override toggle -->
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="review-anon" class="checkbox-input">
+              <span>Keep my name anonymous on the public portal</span>
+            </label>
+          </div>
+
+          <!-- Positive Praise Tags -->
+          <div class="form-group">
+            <span class="form-label">Select tags that describe your experience</span>
+            <div class="tags-selector-grid" role="group" aria-label="Praise descriptors tags">
+              <button type="button" class="tag-select-btn">Compassionate</button>
+              <button type="button" class="tag-select-btn">Attentive</button>
+              <button type="button" class="tag-select-btn">Professional</button>
+              <button type="button" class="tag-select-btn">Excellent Listener</button>
+              <button type="button" class="tag-select-btn">Thorough</button>
+              <button type="button" class="tag-select-btn">Punctual</button>
+              <button type="button" class="tag-select-btn">Reassuring</button>
+            </div>
+          </div>
+
+          <!-- Recommend Checkbox -->
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="review-recommend-check" class="checkbox-input" checked>
+              <span>Yes, I would recommend this nurse to other patients</span>
+            </label>
+          </div>
+
+          <!-- Review Text Body -->
+          <div class="form-group">
+            <label for="review-text" class="form-label">Your Message / Feedback *</label>
+            <textarea id="review-text" class="form-text-control" rows="5" placeholder="Describe your care experience in detail... Your thoughts make a huge difference!" style="resize:vertical;"></textarea>
+            <span class="error-msg" id="error-text">Please share your experience feedback text.</span>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="modal-footer" id="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Cancel</button>
+        <button type="submit" form="patient-review-form" class="btn btn-primary">Submit Review</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       POPUP DIALOG: ADMIN PIN ENTRY
+       ========================================== -->
+  <div class="admin-pin-dialog" id="admin-pin-dialog" role="dialog" aria-modal="true" aria-labelledby="admin-pin-title">
+    <div class="admin-pin-container">
+      <h3 class="admin-pin-title" id="admin-pin-title">Staff Credentials Entry</h3>
+      <p class="admin-pin-desc">Enter the 4-digit administrative PIN to toggle Nurse Reply &amp; Moderation mode.</p>
+      
+      <form id="admin-pin-form">
+        <div class="pin-inputs" role="group" aria-label="4-digit security PIN">
+          <input type="password" maxlength="1" class="pin-digit" required aria-label="PIN digit 1">
+          <input type="password" maxlength="1" class="pin-digit" required aria-label="PIN digit 2">
+          <input type="password" maxlength="1" class="pin-digit" required aria-label="PIN digit 3">
+          <input type="password" maxlength="1" class="pin-digit" required aria-label="PIN digit 4">
+        </div>
+        
+        <p style="font-size:0.75rem; color:var(--text-light); margin-bottom:1.25rem;">
+          <i class="fas fa-info-circle"></i> Demonstration PIN: <strong>8466</strong>
+        </p>
+
+        <div class="admin-pin-actions">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-pin">Cancel</button>
+          <button type="submit" class="btn btn-primary">Verify PIN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase App & Firestore SDKs (Compat mode for local double-click compatibility) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
